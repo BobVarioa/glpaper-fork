@@ -93,10 +93,10 @@ static void get_res(void* data, struct wl_output* output, uint32_t flags, int32_
 
 static void setup_fbo(GLuint* fbo, GLuint* prog, GLuint* texture, GLuint vert, uint16_t width, uint16_t height) {
 	const char* frag_data[] = {
-		"#version 100\n"
+		"#version 321\n"
 		"uniform sampler2D tex2D;"
 
-		"varying highp vec2 texCoords;"
+		"in highp vec2 texCoords;"
 
 		"void main() {"
 		"	gl_FragColor = texture2D(tex2D, texCoords);"
@@ -321,11 +321,11 @@ void paper_init(char* _monitor, char* frag_path, uint16_t fps, char* layer_name,
 	glEnableVertexAttribArray(1);
 
 	const char* vert_data[] = {
-		"#version 100\n"
-		"attribute highp vec2 datIn;"
-		"attribute highp vec2 texIn;"
+		"#version 320 es\n"
+		"in highp vec2 datIn;"
+		"in highp vec2 texIn;"
 
-		"varying vec2 texCoords;"
+		"out vec2 texCoords;"
 
 		"void main() {"
 		"	texCoords = texIn;"
